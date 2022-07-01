@@ -42,6 +42,7 @@ _REDIS_PORT=6379
 _REDIS_CONFIG_FILE="/etc/redis/$REDIS_PORT.conf"
 _REDIS_LOG_FILE="/var/log/redis_$REDIS_PORT.log"
 _REDIS_DATA_DIR="/var/lib/redis/$REDIS_PORT"
+_REDIS_EXECUTABLE_DEFAULT="/usr/local/bin/redis-server"
 _MANUAL_EXECUTION=false
 
 echo "Welcome to the redis service installer"
@@ -70,10 +71,9 @@ echo "Selected default - $REDIS_DATA_DIR"
 if [ ! -x "$REDIS_EXECUTABLE" ] ; then
 	_MANUAL_EXECUTION=true
 	#get the redis executable path
-	_REDIS_EXECUTABLE=`command -v redis-server`
+	REDIS_EXECUTABLE=`command -v redis-server`
 	if [ ! -x "$REDIS_EXECUTABLE" ] ; then
-		REDIS_EXECUTABLE=$_REDIS_EXECUTABLE
-
+		REDIS_EXECUTABLE=$_REDIS_EXECUTABLE_DEFAULT
 		if [ ! -x "$REDIS_EXECUTABLE" ] ; then
 			echo "Mmmmm...  it seems like you don't have a redis executable. Did you run make install yet?"
 			exit 1
