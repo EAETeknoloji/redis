@@ -50,10 +50,10 @@ echo "This script will help you easily set up a running redis server"
 echo
 
 #check for root user
-if [ "$(id -u)" -ne 0 ] ; then
-	echo "You must run this script as root. Sorry!"
-	exit 1
-fi
+#if [ "$(id -u)" -ne 0 ] ; then
+#	echo "You must run this script as root. Sorry!"
+#	exit 1
+#fi
 
 #assign
 REDIS_PORT=$_REDIS_PORT
